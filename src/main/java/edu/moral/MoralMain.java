@@ -24,7 +24,7 @@ public class MoralMain {
 
     public static void main(String...args){
 
-        Connection connection = DBUtil.getConnection();
+        Connection connection = DBUtil.getDevelopConnection();
 
         PreparedStatement statement = null;
 
