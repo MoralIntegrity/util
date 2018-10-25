@@ -1,5 +1,8 @@
 package edu.moral.utils;
 
+import org.apache.commons.lang3.time.DateUtils;
+import org.xerial.snappy.Snappy;
+
 /**
  *
  * @author MoralIntegrity
@@ -49,6 +52,14 @@ public class CommonUtil {
 
         return result;
 
+    }
+
+    public static void main(String...args) throws Exception{
+        String template = "获取奖励#现金券 #元现金";
+
+        String ss = "#";
+
+        System.out.println(template.replaceFirst(ss, "12321").replaceFirst(ss, "110"));
     }
 
 
