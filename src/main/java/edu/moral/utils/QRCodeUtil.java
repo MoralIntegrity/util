@@ -88,6 +88,6 @@ public class QRCodeUtil {
     }
 
     public static void main(String...args){
-        createQRCode("https://mixed.caichengwang.com/recharge/#/");
+        createQRCode("https://mixed.caichengwang.com/customer/recharge/");
     }
 }

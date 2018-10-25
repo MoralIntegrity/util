@@ -3,6 +3,11 @@ package edu.moral.utils;
 import com.github.stuxuhai.jpinyin.PinyinFormat;
 import com.github.stuxuhai.jpinyin.PinyinHelper;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
+
 /**
  * Created with default template
  * Author: MoralIntegrity
@@ -17,7 +22,24 @@ public class CharacterUtil {
 
         String content = "富春山居图";
 
+        //firstCharacter(content);
 
+        List<String> temp = new ArrayList<>();
+
+        temp.add("s");
+        temp.add("s");
+        temp.add("s");
+        temp.add("d");
+        temp.add("s");
+        temp.add("s");
+        temp.add("s");
+
+        System.out.println(temp.stream().filter(i -> Objects.equals(i,  "d")).collect(Collectors.toList()));
+
+
+    }
+
+    public static void firstCharacter(String content) throws Exception{
         System.out.println(((Character)PinyinHelper.getShortPinyin(content).charAt(0)).toString().toUpperCase());
 
 
