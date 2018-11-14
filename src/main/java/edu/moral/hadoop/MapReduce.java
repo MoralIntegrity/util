@@ -5,13 +5,9 @@ import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
-import org.apache.hadoop.mapreduce.Mapper;
-import org.apache.hadoop.mapreduce.Reducer;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
-
-import java.io.IOException;
-import java.util.stream.StreamSupport;
+import org.apache.log4j.BasicConfigurator;
 
 /**
  * Created with default template
@@ -34,36 +30,10 @@ public class MapReduce {
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(LongWritable.class);
 
-        FileInputFormat.setInputPaths(job, "d:/tmp/log/auth.log");
-        FileOutputFormat.setOutputPath(job, new Path("d:/tmp/hadoop/logout"));
+        FileInputFormat.setInputPaths(job, "d:/tmp/log/customer.log");
+        FileOutputFormat.setOutputPath(job, new Path("d:/tmp/hadoop/customerLog"));
 
         job.waitForCompletion(true);
 
-    }
-
-    class WordMapper extends Mapper<LongWritable, Text, Text, LongWritable> {
-
-        @Override
-        protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
-
-
-            final LongWritable single = new LongWritable(1);
-
-            String current = value.toString();
-
-            String[] words = current.split(" ");
-
-            for(String entity : words){
-                context.write(new Text(entity), single);
-            }
-        }
-    }
-
-    class WordReducer extends Reducer<Text, LongWritable, Text, LongWritable> {
-
-        @Override
-        protected void reduce(Text key, Iterable<LongWritable> values, Context context) throws IOException, InterruptedException {
-            context.write(key, StreamSupport.stream(values.spliterator(), false).reduce((x, y) -> new LongWritable(x.get() + y.get())).get());
-        }
     }
 }
