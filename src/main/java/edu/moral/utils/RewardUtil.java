@@ -148,11 +148,7 @@ public class RewardUtil {
             return false;
         }
 
-        if(a > 6 && b >= 1 || c > 3 && d >=3 || e > 3 && f >= 3){
-            return false;
-        }
-
-        return true;
+        return !(a > 6 && b >= 1 || c > 3 && d >= 3 || e > 3 && f >= 3);
     }
 
     private static List<Integer> splitNumberToBit(Integer number, Integer size) {
